@@ -1,0 +1,23 @@
+extend type Query {
+    sendEvent(input: SendEventInput): String @authenticate(enforce: false)
+}
+
+input SendEventInput {
+    eventType: EventType!
+    searchString: String
+    contentId: String
+    contentName: String
+    contentCategory: String
+    currency: String
+    value: Float
+    numItems: Int
+    paymentIntentId: String
+    authorizationSignature: SignatureInput
+    gaClientId: String
+}
+
+input SignatureInput {
+    r: String!
+    s: String!
+    v: String!
+}

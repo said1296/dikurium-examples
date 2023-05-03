@@ -1,0 +1,44 @@
+type AuthorizationTransfer {
+    tokenContract: String!
+    id:           Int!
+    amount:       Int!
+    validUntil: Int!
+}
+
+type AuthorizationBatch {
+    tokenContract: String!
+    ids:          [Int!]
+    amounts:       [Int!]
+    validUntil: Int!
+}
+
+type AuthorizationBuy {
+    tokenContract: String!
+    seller: String!
+    id:           Int!
+    amount:       Int!
+    toSeller: String!
+    total: String!
+    validUntil: Int!
+}
+
+type AuthorizationTransferResponse {
+    signature: Signature!
+    authorization: AuthorizationTransfer!
+}
+
+type AuthorizationBatchResponse {
+    signature: Signature!
+    authorization: AuthorizationBatch!
+}
+
+type AuthorizationBuyResponse {
+    signature: Signature!
+    authorization: AuthorizationBuy!
+}
+
+type Signature {
+    r: String!
+    s: String!
+    v: String!
+}

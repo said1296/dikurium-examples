@@ -1,0 +1,13 @@
+extend type Query {
+    roles(filter: RolesFilter!): [Role!]
+}
+
+input RolesFilter {
+    id: Int
+    name: String
+    user: RolesUserFilter
+}
+
+input RolesUserFilter {
+    id: Int
+}

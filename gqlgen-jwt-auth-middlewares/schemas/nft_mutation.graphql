@@ -1,0 +1,47 @@
+extend type Mutation {
+    toggleCategory(input: ToggleCategory!): Category! @authenticate(rules: [DESIGNER_OF])
+    createIPFSHash(input: CreateIPFSHashInput!): String @authenticate
+    setFilter(input: SaveFilter!): String @authenticate(rules: [DESIGNER_OF])
+    saveCreationIntent(input: SaveCreationIntentInput!): String @authenticate(rules: [DESIGNER_ROLE])
+}
+
+input SaveCreationIntentInput {
+    id: String!
+    filterUrl: String
+    categoryId: Int!
+    ethPrice: Float!
+    acceptsFiat: Boolean!
+}
+
+input SaveFilter {
+    nftId: Int!
+    filterUrl: String!
+}
+
+input InitialCategoryInput {
+    nftId: Int!
+    categoryId: Int!
+}
+
+input ToggleCategory {
+    nftId: Int!
+    categoryId: Int!
+}
+
+input CreateIPFSHashInput {
+    """ Metadata """
+    name: String!
+    description: String!
+    externalUrl: String
+    attributes: [AttributeInput!]
+
+    """ Files """
+    image: Upload!
+    animation: Upload
+}
+
+input AttributeInput {
+    displayType: String
+    traitType: String
+    value: String
+}

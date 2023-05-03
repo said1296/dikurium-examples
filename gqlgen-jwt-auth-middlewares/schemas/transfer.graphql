@@ -1,0 +1,13 @@
+type Transfer {
+    id: ID!
+    from: FromTo!
+    to: FromTo!
+    amount: Int!
+    block: Int!
+    nft: Nft! @goField(forceResolver: true)
+}
+
+type FromTo {
+    address: String!
+    user: User
+}

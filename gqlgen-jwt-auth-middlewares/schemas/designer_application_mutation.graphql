@@ -1,0 +1,9 @@
+extend type Mutation {
+    submitDesignerApplication: String @authenticate
+    resolveDesignerApplication(input: ResolveDesignerApplicationInput): String @authenticate(rules: [ADMIN_ROLE])
+}
+
+input ResolveDesignerApplicationInput {
+    id: Int!
+    approve: Boolean!
+}

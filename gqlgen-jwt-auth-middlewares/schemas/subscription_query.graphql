@@ -1,0 +1,13 @@
+extend type Query {
+    subscriptions(filter: SubscriptionsFilter!): [UserSubscription!]
+}
+
+input SubscriptionsFilter {
+    id: Int
+    name: String
+    user: SubscriptionsUserFilter
+}
+
+input SubscriptionsUserFilter {
+    id: Int
+}

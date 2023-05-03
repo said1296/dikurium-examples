@@ -1,0 +1,15 @@
+extend type Mutation {
+    subscribe(input: SubscriptionInput): String
+    unsubscribe(input: UnsubscribeInput): String
+}
+
+input SubscriptionInput {
+    email: String! @lowercase
+    subscriptionTypeId: Int!
+}
+
+input UnsubscribeInput {
+    email: String! @lowercase
+    subscriptionTypeId: Int!
+    signature: String!
+}

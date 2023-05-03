@@ -1,0 +1,54 @@
+extend type Mutation {
+    createCard(input: CreateCardInput): String!
+    createPaymentIntent(input: CreatePaymentIntentInput): PaymentIntent! @authenticate
+    createStripeCheckoutSession(input: CreateStripeCheckoutLinkInput): CreateStripeCheckoutResponse! @authenticate
+    fulfillPaymentIntent(input: FulfillPaymentIntentInput): String! @authenticate
+    upsertPayoutToken(input: UpsertPayoutTokenInput!): String! @authenticate
+    buy(input: BuyInput): String!
+}
+
+type CreateStripeCheckoutResponse {
+    stripeCheckoutLink: String!
+    paymentIntentId: String!
+}
+
+input CreateStripeCheckoutLinkInput {
+    cancelUrl: String!
+    successUrl: String!
+    nftId: Int!,
+    amount: Int!
+}
+
+type PaymentIntent {
+    id: String!
+    clientSecret: String!
+}
+
+input UpsertPayoutTokenInput {
+    token: String!
+}
+
+input FulfillPaymentIntentInput {
+    id: String!
+    cancel: Boolean
+}
+
+input BuyInput {
+    nftID: Int!
+    amount: Int!
+    stripeToken: String!
+}
+
+input CreatePaymentIntentInput {
+    nftID: Int!
+    amount: Int!
+}
+
+input CreateCardInput {
+    name: String!
+    number: String!
+    expMonth: String!
+    expYear: String!
+    cvc: String!
+}
+

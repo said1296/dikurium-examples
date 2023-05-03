@@ -1,0 +1,43 @@
+type User {
+    id: Int!
+    firstName: String! @protected(rules: [ADMIN])
+    lastName: String! @protected(rules: [ADMIN])
+    email: String! @protected(rules: [ADMIN])
+    preferredName: String!
+
+    addresses: [String!] @goField(forceResolver: true)
+    owned: [UserHasNfts!] @goField(forceResolver: true)
+    designed(filter: DesignedFieldFilter): [Nft!] @goField(forceResolver: true)
+    roles: [Role!] @goField(forceResolver: true)
+
+    profile: Profile! @goField(forceResolver: true)
+
+    address: Address! @goField(forceResolver: true)
+
+    """ Relevant fields for designers """
+    hasCompleteProfile: Boolean!
+    hasBankAccount: Boolean!
+    hasUploadedOneNft: Boolean!
+    stripeTransferCapabilityStatus: String!
+}
+
+input DesignedFieldFilter {
+    onSale: Boolean
+}
+
+type UserHasNfts {
+    address: String!
+    nft: Nft!
+    onChain: Int!
+    offChain: Int!
+}
+
+type Address {
+    countryCode: String!
+    country: String!
+}
+
+type Profile {
+    image: String
+    description: String
+}

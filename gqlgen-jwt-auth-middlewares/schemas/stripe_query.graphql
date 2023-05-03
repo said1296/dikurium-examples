@@ -1,0 +1,29 @@
+extend type Query {
+    createStripeAccountLink(input: CreateStripeAccountLinkInput): String! @authenticate
+    getBankAccountRequirements: BankAccountRequirements @authenticate
+    getBankAccount: BankAccount @authenticate
+}
+
+input CreateStripeAccountLinkInput {
+    returnUrl: String!
+    refreshUrl: String!
+}
+
+type BankAccountRequirements {
+    currencies: [Currency!]
+}
+
+type Currency {
+    code: String!
+    countries: [String!]
+}
+
+type BankAccount {
+    country: String!
+    accountHolderName: String!
+    accountHolderType: String!
+    currency: String!
+    routingNumber: String!
+    status: String!
+    last4: String!
+}

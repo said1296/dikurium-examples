@@ -1,0 +1,13 @@
+extend type Query {
+    blogPosts(filter: BlogPostsFilter!): [BlogPost!]
+}
+
+input BlogPostsFilter {
+    contains: String,
+    orderBy: BlogPostsOrderBy
+    pagination: Pagination
+}
+
+input BlogPostsOrderBy {
+    creationTime: OrderDirection,
+}

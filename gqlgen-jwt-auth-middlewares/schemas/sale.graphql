@@ -1,0 +1,7 @@
+type Sale {
+    nftId: Int
+    eth: Float!
+    usd: Float
+    acceptsFiat: Boolean!
+    available: Int! @goField(forceResolver: true)
+}

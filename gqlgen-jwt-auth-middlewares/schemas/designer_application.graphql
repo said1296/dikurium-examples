@@ -1,0 +1,5 @@
+type DesignerApplication {
+    userId: Int!
+    user: User! @goField(forceResolver: true)
+    submitTime: Time!
+}

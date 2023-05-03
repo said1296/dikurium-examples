@@ -1,0 +1,6 @@
+type Role {
+    id: Int!
+    name: String!
+
+    users: [User!] @goField(forceResolver: true)
+}

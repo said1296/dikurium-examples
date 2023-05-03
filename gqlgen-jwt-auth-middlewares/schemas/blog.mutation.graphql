@@ -1,0 +1,14 @@
+extend type Mutation {
+    createBlogPost(input: CreateBlogPostInput): String @authenticate(rules: [ADMIN_ROLE])
+    deleteBlogPost(input: DeleteBlogPostInput): String @authenticate(rules: [ADMIN_ROLE])
+}
+
+input CreateBlogPostInput {
+    title: String!
+    body: String!
+    image: Upload!
+}
+
+input DeleteBlogPostInput {
+    id: Int!
+}

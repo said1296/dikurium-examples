@@ -1,0 +1,50 @@
+extend type Mutation {
+    createUser(input: CreateUserInput!): User!
+
+    confirmEmail(input: ConfirmEmailInput!): String
+
+    resendConfirmationEmail(input: ResendConfirmationEmailInput): String
+
+    setRole(input: SetRoleInput): String @authenticate(rules: [ADMIN_ROLE])
+
+    updateProfile(input: ProfileInput): String @authenticate
+
+    assignOffChainNfts(input: AssignOffChainNftsInput!): String @authenticate(rules: [ADMIN_ROLE])
+}
+
+input AssignOffChainNftsInput {
+    nftId: Int!
+    amount: Int!
+    userId: Int!
+}
+
+input ResendConfirmationEmailInput {
+    email: String @lowercase
+}
+
+input ProfileInput {
+    image: Upload
+    description: String
+}
+
+input SetRoleInput {
+    userId: Int!
+    roleId: Int!
+    activate: Boolean!
+}
+
+input CreateUserInput {
+    email: String! @lowercase
+    password: String!
+    firstName: String!
+    lastName: String!
+    preferredName: String!
+    applyAsDesigner: Boolean!
+
+    """ ISO 3166-1 alpha-2 """
+    country: String!
+}
+
+input ConfirmEmailInput {
+    key: String!
+}

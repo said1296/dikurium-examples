@@ -1,0 +1,20 @@
+extend type Mutation {
+    createTransferAuthorization(input: CreateTransferAuthorizationInput): AuthorizationTransferResponse @authenticate
+    createBatchTransferAuthorization(input: CreateBatchTransferAuthorizationInput): AuthorizationBatchResponse @authenticate
+    createBuyAuthorization(input: CreateBuyAuthorizationInput): AuthorizationBuyResponse @authenticate
+}
+
+input CreateBatchTransferAuthorizationInput {
+    ids: [Int!]
+    amounts: [Int!]
+}
+
+input CreateTransferAuthorizationInput {
+    id: Int!
+    amount: Int!
+}
+
+input CreateBuyAuthorizationInput {
+    id: Int!
+    amount: Int!
+}

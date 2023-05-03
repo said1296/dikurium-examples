@@ -1,0 +1,56 @@
+""" Shared types """
+
+type Query
+type Mutation
+scalar Upload
+scalar Time
+
+enum OrderDirection {
+    ASC,
+    DESC
+}
+
+input Pagination {
+    limit: Int!, @intBetween(biggerThan: 0, fieldName: "limit")
+    page: Int! @intBetween(biggerThan: 0, fieldName: "page")
+}
+
+type Response {
+    success: Boolean,
+    message: String
+}
+
+""" Directives """
+
+directive @goModel(model: String, models: [String!]) on OBJECT
+    | INPUT_OBJECT
+    | SCALAR
+    | ENUM
+    | INTERFACE
+    | UNION
+
+directive @intBetween(
+    biggerThan: Int,
+    lessThan: Int,
+    fieldName: String!
+) on INPUT_FIELD_DEFINITION
+
+directive @lowercase on INPUT_FIELD_DEFINITION
+
+directive @goField(forceResolver: Boolean, name: String) on INPUT_FIELD_DEFINITION
+    | FIELD_DEFINITION
+
+enum RULE {
+    ADMIN_ROLE,
+    DESIGNER_ROLE,
+    USER_ROLE,
+    DESIGNER_OF,
+    OWNER_OF
+}
+
+directive @authenticate(rules: [RULE!], enforce: Boolean) on FIELD_DEFINITION
+
+enum PROTECTED_RULE {
+    ADMIN
+}
+directive @protected(rules: [PROTECTED_RULE!]) on FIELD_DEFINITION

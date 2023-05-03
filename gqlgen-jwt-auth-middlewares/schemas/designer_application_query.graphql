@@ -1,0 +1,22 @@
+extend type Query {
+    designerApplications(filter: DesignerApplicationsFilter!): [DesignerApplication]
+}
+
+input DesignerApplicationsFilter {
+    user: DesignerApplicationsUsersFilter
+    orderBy: DesignerApplicationsOrderBy
+    pagination: Pagination
+}
+
+input DesignerApplicationsOrderBy {
+    id: OrderDirection
+    preferredName: OrderDirection
+    lastName: OrderDirection
+    submitTime: OrderDirection
+}
+
+input DesignerApplicationsUsersFilter {
+    id: Int
+    name: String
+    email: String @lowercase
+}

@@ -1,0 +1,17 @@
+extend type Query {
+    nfts(filter: NftsFilter!): [Nft!] @authenticate(enforce: false)
+}
+
+input NftsFilter {
+    ids: [Int!]
+    categoryIds: [Int!]
+    orderBy: NftsOrderBy
+    name: String
+    pagination: Pagination
+    onSale: Boolean
+}
+
+input NftsOrderBy {
+    id: OrderDirection,
+    name: OrderDirection,
+}

@@ -1,0 +1,33 @@
+type Nft {
+    id: Int!
+    totalSupply: Int!
+    creator: String!
+    creatorUser: User @goField(forceResolver: true)
+    blockCreation: Int!
+    transfers: [Transfer!] @goField(forceResolver: true)
+    owners: [Owner!] @goField(forceResolver: true)
+    categories: [Category]! @goField(forceResolver: true)
+    sale: Sale @goField(forceResolver: true)
+    filterUrl: String @goField(forceResolver: true)
+    owned: UserHasNfts @goField(forceResolver: true)
+
+    """ Metadata """
+    name: String!
+    description: String!
+    externalUrl: String!
+    image: String!
+    animationUrl: String!
+    attributes: [Attribute!] @goField(forceResolver: true)
+}
+
+type Owner {
+    user: User
+    addresses: [String!]
+    amount: Int!
+}
+
+type Attribute {
+    displayType: String
+    traitType: String
+    value: String
+}

@@ -1,0 +1,4 @@
+extend type Mutation {
+    updateOmnisendProducts: String @authenticate(rules: [ADMIN_ROLE])
+    updateOmnisendContacts: String @authenticate(rules: [ADMIN_ROLE])
+}

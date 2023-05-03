@@ -1,0 +1,46 @@
+extend type Mutation {
+    login(input: LoginInput): Authentication
+
+    loginBlockchainInitialize: String
+    loginBlockchainEnd(input: LoginBlockchainEndInput): Authentication
+
+    logout: String @authenticate
+
+    forgotPasswordInitialize(input: ForgotPasswordInitialize): String
+    forgotPasswordEnd(input: ForgotPasswordEnd): String
+
+    associateAddressInitialize(input: AssociateAddressInitialize): String @authenticate
+    associateAddressEnd(input: AssociateAddressEnd): String @authenticate
+}
+
+input ForgotPasswordEnd {
+    newPassword: String!
+    key: String!
+}
+
+input ForgotPasswordInitialize {
+    email: String! @lowercase
+}
+
+input LoginBlockchainEndInput {
+    message: String!
+    signedMessage: String!
+}
+
+input LoginInput {
+    email: String! @lowercase
+    password: String!
+}
+
+input AssociateAddressEnd {
+    signedMessage: String!
+}
+
+input AssociateAddressInitialize {
+    address: String!
+}
+
+type Authentication {
+    jwt: String!,
+    user: User!
+}

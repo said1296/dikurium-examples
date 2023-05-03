@@ -1,0 +1,9 @@
+extend type Mutation {
+    upsertSale(input: UpsertSaleInput): String! @authenticate(rules:[DESIGNER_OF])
+}
+
+input UpsertSaleInput {
+    nftId: Int!
+    ethPrice: Float!
+    acceptsFiat: Boolean!
+}

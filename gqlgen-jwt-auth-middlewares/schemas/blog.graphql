@@ -1,0 +1,7 @@
+type BlogPost {
+    id: Int!
+    title: String!
+    body: String!
+    image: String
+    CreationTime: Time!
+}

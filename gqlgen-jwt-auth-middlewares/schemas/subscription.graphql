@@ -1,0 +1,4 @@
+type UserSubscription {
+    id: Int!
+    name: String!
+}

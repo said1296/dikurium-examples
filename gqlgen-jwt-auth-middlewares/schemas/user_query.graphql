@@ -1,0 +1,37 @@
+extend type Query {
+    users(filter: UsersFilter!): UsersResult! @authenticate(enforce: false)
+    offchainNfts: [OffchainNft!] @authenticate
+
+    """ Returns a nil string if it's valid """
+    validateEmail(email: String!): String
+}
+
+type OffchainNft {
+    id: Int!,
+    amount: Int!
+}
+
+type UsersResult {
+    users: [User!]
+    count: Int! @goField(forceResolver: true)
+}
+
+input UsersFilter {
+    ids: [Int!]
+    name: String
+    email: String @lowercase
+    orderBy: UsersOrderBy
+    pagination: Pagination
+    roles: [Int!]
+    hasCompleteProfile: Boolean
+    hasBankAccount: Boolean
+    hasUploadedOneNft: Boolean
+    stripeTransferCapabilityStatusActive: Boolean
+    confirmed: Boolean
+}
+
+input UsersOrderBy {
+    id: OrderDirection,
+    preferredName: OrderDirection
+    lastName: OrderDirection,
+}

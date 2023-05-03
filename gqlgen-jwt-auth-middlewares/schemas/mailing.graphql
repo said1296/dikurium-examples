@@ -1,0 +1,8 @@
+extend type Query {
+    sendSuccessfulBuyEmail(input: SendSuccessfulBuyEmailInput!): String @authenticate
+}
+
+input SendSuccessfulBuyEmailInput {
+    nftID: Int!
+    txHash: String!
+}
